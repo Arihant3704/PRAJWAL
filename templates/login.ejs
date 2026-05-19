@@ -1,0 +1,59 @@
+<%- include('header', {hideSidebar: true, hideTopBar: true}) %>
+
+<div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background: radial-gradient(circle at center, #1e293b, #0f172a);">
+    <div class="card glass animate-fade" style="width: 100%; max-width: 400px; padding: 2.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div class="brand-icon" style="margin: 0 auto 1.5rem; width: 48px; height: 48px;">
+                <i class="fas fa-shield-halved text-white" style="font-size: 1.5rem;"></i>
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Secure Access</h2>
+            <p style="color: var(--text-secondary); font-size: 0.875rem;">Enter credentials for command center</p>
+        </div>
+
+        <% if (error) { %>
+            <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1.5rem; text-align: center; font-size: 0.8125rem; font-weight: 500;">
+                <i class="fas fa-triangle-exclamation"></i> <%= error %>
+            </div>
+        <% } %>
+
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control" placeholder="admin@spamshield.com" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <div style="position: relative;">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="••••••••" required>
+                    <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-secondary); font-size: 0.875rem;"></i>
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.8125rem; color: var(--text-secondary);">
+                    <input type="checkbox" name="remember" style="accent-color: var(--accent-cyan);"> Remember Me
+                </label>
+                <a href="#" style="color: var(--accent-cyan); font-size: 0.8125rem; text-decoration: none; font-weight: 500;">Recover Keys</a>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.875rem; margin-top: 1rem;">
+                Authenticate session
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 2rem; color: var(--text-secondary); font-size: 0.8125rem;">
+            No access granted? <a href="#" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">Request Entry</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function (e) {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
+
+<%- include('footer') %>

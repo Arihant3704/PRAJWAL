@@ -1,0 +1,52 @@
+<%- include('header', {title: 'Secure Communications'}) %>
+
+<div class="animate-fade" style="max-width: 600px; margin: 0 auto;">
+    <div style="margin-bottom: 3rem; text-align: center;">
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Get in Touch</h2>
+        <p style="color: var(--text-secondary); font-size: 0.875rem;">Direct uplink to the security operations center</p>
+    </div>
+
+    <% if (success) { %>
+        <div class="card glass animate-fade" style="text-align: center; border-color: rgba(34, 197, 94, 0.3); background: rgba(34, 197, 94, 0.05); padding: 3rem;">
+            <div style="width: 64px; height: 64px; background: rgba(34, 197, 94, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                <i class="fas fa-check text-success" style="font-size: 1.5rem; color: #22c55e;"></i>
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Transmission Received</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.875rem;">Your request has been logged and queued for priority response.</p>
+            <a href="/" class="btn btn-outline" style="padding: 0.75rem 2rem;">Return to Base</a>
+        </div>
+    <% } else { %>
+        <div class="card glass shadow-2xl" style="padding: 2.5rem; background: rgba(30, 41, 59, 0.5);">
+            <form action="/contact" method="POST">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Identity Verification" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control" placeholder="Comms Channel" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message Payload</label>
+                    <textarea name="message" class="form-control" rows="5" placeholder="Detailed query..." required style="resize: none;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+                    <i class="fas fa-paper-plane"></i> Send Secure Message
+                </button>
+            </form>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+            <div class="card glass" style="padding: 1.25rem; text-align: center; background: rgba(0,0,0,0.2);">
+                <i class="fas fa-envelope text-accent-cyan" style="margin-bottom: 0.75rem; font-size: 1.25rem;"></i>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600;">ops@spamshield.com</p>
+            </div>
+            <div class="card glass" style="padding: 1.25rem; text-align: center; background: rgba(0,0,0,0.2);">
+                <i class="fas fa-headset text-accent-indigo" style="margin-bottom: 0.75rem; font-size: 1.25rem;"></i>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600;">+1 (555) SHIELD</p>
+            </div>
+        </div>
+    <% } %>
+</div>
+
+<%- include('footer') %>

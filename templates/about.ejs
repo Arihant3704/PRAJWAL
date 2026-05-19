@@ -1,0 +1,59 @@
+<%- include('header', {title: 'System Intelligence'}) %>
+
+<div class="animate-fade" style="max-width: 1000px; margin: 0 auto;">
+    <div style="margin-bottom: 3rem;">
+        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.03em;">Understanding <span class="text-accent-cyan">SpamShield</span></h2>
+        <p style="font-size: 1.125rem; color: var(--text-secondary); line-height: 1.6;">A deep dive into the engineering principles of our matching engine.</p>
+    </div>
+
+    <div class="detector-wrap" style="margin-bottom: 4rem;">
+        <div class="card glass" style="flex: 1.5; padding: 2.5rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fas fa-microchip text-accent-cyan"></i> The Matching Engine
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                SpamShield utilizes the <b>Boyer-Moore-Horspool</b> algorithm, a high-performance string matching technique that simplifies the complex Boyer-Moore approach while maintaining exceptional efficiency for practical use cases.
+            </p>
+            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 0.75rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                <p style="color: var(--accent-cyan); margin-bottom: 0.5rem;"># Shift Logic</p>
+                dist(c) = length(pattern) - 1 - last_index(c)<br>
+                if c not in pattern: dist(c) = length(pattern)
+            </div>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                By preprocessing the search pattern into a "Bad Character Shift Table," the engine can skip large portions of text when a mismatch occurs, often achieving sub-linear performance in real-world email analysis.
+            </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1.5rem; flex: 1;">
+            <div class="card glass" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(15, 23, 42, 0.1));">
+                <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent-cyan);">Computational Speed</h4>
+                <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6;">Unlike linear searches, Horspool scales efficiently as email body size increases, making it ideal for enterprise-grade throughput.</p>
+            </div>
+            <div class="card glass" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(15, 23, 42, 0.1));">
+                <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent-indigo);">Pattern Heuristics</h4>
+                <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6;">Our system combines exact string matching with weighted scoring to reduce false positives in legitimate financial communication.</p>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 2rem; text-align: center;">Core Architecture</h3>
+    <div class="stats-grid" style="margin-bottom: 4rem;">
+        <div class="card glass stat-item" style="text-align: center;">
+            <i class="fas fa-database" style="font-size: 1.5rem; color: var(--accent-cyan); margin-bottom: 1rem;"></i>
+            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">SQLite Core</h4>
+            <p style="font-size: 0.8125rem; color: var(--text-secondary);">Persistent threat signature storage and analysis history.</p>
+        </div>
+        <div class="card glass stat-item" style="text-align: center;">
+            <i class="fas fa-server" style="font-size: 1.5rem; color: var(--accent-indigo); margin-bottom: 1rem;"></i>
+            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Express Engine</h4>
+            <p style="font-size: 0.8125rem; color: var(--text-secondary);">High-concurrency middleware for rapid request handling.</p>
+        </div>
+        <div class="card glass stat-item" style="text-align: center;">
+            <i class="fas fa-shield-halved" style="font-size: 1.5rem; color: var(--accent-purple); margin-bottom: 1rem;"></i>
+            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Secure Vault</h4>
+            <p style="font-size: 0.8125rem; color: var(--text-secondary);">Encrypted authentication and sensitive data protection.</p>
+        </div>
+    </div>
+</div>
+
+<%- include('footer') %>

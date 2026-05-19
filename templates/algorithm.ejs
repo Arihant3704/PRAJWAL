@@ -1,0 +1,69 @@
+<%- include('header', {title: 'Pattern Logic Engine'}) %>
+
+<div class="animate-fade">
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 700;">String Matching visualization</h2>
+        <p style="font-size: 0.875rem; color: var(--text-secondary);">Interactive trace of the Horspool scan sequence</p>
+    </div>
+
+    <div class="card glass shadow-2xl" style="background: rgba(30, 41, 59, 0.4); padding: 2.5rem;">
+        <div style="margin-bottom: 2.5rem;">
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                <div style="flex: 1; min-width: 300px;">
+                    <label class="form-label">Search Context (Text)</label>
+                    <input type="text" id="vizText" class="form-control" value="Welcome to win big money today" placeholder="Target Text">
+                </div>
+                <div style="width: 200px;">
+                    <label class="form-label">Key Signature (Pattern)</label>
+                    <input type="text" id="vizPattern" class="form-control" value="win" placeholder="Pattern">
+                </div>
+                <div style="display: flex; align-items: flex-end; gap: 0.75rem;">
+                    <button id="startViz" class="btn btn-primary" style="height: 44px; padding: 0 1.5rem;">
+                        <i class="fas fa-play"></i> Start
+                    </button>
+                    <button id="pauseViz" class="btn btn-outline" style="height: 44px; padding: 0 1rem;" disabled>
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button id="resetViz" class="btn btn-outline" style="height: 44px; padding: 0 1rem;">
+                        <i class="fas fa-undo"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="viz-controls" style="margin-top: 1.5rem;">
+                <label style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-secondary);">Speed Control</label>
+                <input type="range" id="vizSpeed" min="100" max="2000" value="800" class="slider" style="flex: 1;">
+                <span id="speedVal" style="font-size: 0.75rem; font-family: monospace; color: var(--accent-cyan);">800ms</span>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div style="background: rgba(15, 23, 42, 0.8); padding: 3rem 2rem; border-radius: 1rem; border: 1px solid var(--border-color); margin-bottom: 2.5rem; overflow-x: auto; min-height: 200px;">
+            <div id="textRow" style="display: flex; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; margin-bottom: 30px;"></div>
+            <div id="patternRow" style="display: flex; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative;"></div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+            <div class="card glass" style="background: rgba(0,0,0,0.2);">
+                <h4 style="margin-bottom: 1.25rem; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; color: var(--accent-cyan); letter-spacing: 0.05em;">
+                    <i class="fas fa-table-list"></i> Shift Table
+                </h4>
+                <div id="shiftTableViz" style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.8;">
+                    <!-- Shift table will be generated here -->
+                </div>
+            </div>
+            <div class="card glass" style="background: rgba(0,0,0,0.2);">
+                <h4 style="margin-bottom: 1.25rem; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; color: var(--accent-indigo); letter-spacing: 0.05em;">
+                    <i class="fas fa-terminal"></i> Execution Log
+                </h4>
+                <div id="vizLog" style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; max-height: 200px; overflow-y: auto; color: var(--text-secondary); line-height: 1.6;">
+                    System ready. Waiting for initialization...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/algorithm-viz.js"></script>
+
+<%- include('footer') %>

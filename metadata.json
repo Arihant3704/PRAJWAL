@@ -1,0 +1,6 @@
+{
+  "name": "SpamShield - Horspool Spam Detection",
+  "description": "A professional spam email detection system using Horspool’s String Matching Algorithm with a cybersecurity-themed dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

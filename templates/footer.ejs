@@ -1,0 +1,23 @@
+            </div><!-- End content-body -->
+            <footer style="padding: 1.5rem 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-secondary); background: rgba(15, 23, 42, 0.5);">
+                <div>&copy; 2026 SpamShield. Engineering Excellence</div>
+                <div style="display: flex; gap: 1.5rem;">
+                    <span>Engine: SQLite / Express</span>
+                    <span style="color: var(--accent-cyan);">© Cyber Defense Unit</span>
+                </div>
+            </footer>
+        </main>
+    </div><!-- End app-wrapper -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        // Active link highlighting
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === window.location.pathname) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
