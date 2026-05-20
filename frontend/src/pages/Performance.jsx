@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Play, Zap, Info, BarChart } from 'lucide-react';
+import { safeFetch } from '../utils/api';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -39,7 +40,7 @@ export const Performance = ({ token, apiUrl }) => {
     const textBuffer = baseText.repeat(Math.ceil(size / baseText.length));
 
     try {
-      const response = await fetch(`${apiUrl}/api/scans`, {
+      const response = await safeFetch(`${apiUrl}/api/scans`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

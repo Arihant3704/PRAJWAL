@@ -8,6 +8,7 @@ import {
   AlertTriangle,
   ArrowRight
 } from 'lucide-react';
+import { safeFetch } from '../utils/api';
 
 export const Detector = ({ token, apiUrl }) => {
   const [subject, setSubject] = useState('');
@@ -25,7 +26,7 @@ export const Detector = ({ token, apiUrl }) => {
     setResult(null);
 
     try {
-      const response = await fetch(`${apiUrl}/api/scans`, {
+      const response = await safeFetch(`${apiUrl}/api/scans`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

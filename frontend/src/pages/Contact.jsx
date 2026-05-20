@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, MessageSquareCode, Mail, User } from 'lucide-react';
+import { safeFetch } from '../utils/api';
 
 export const Contact = ({ apiUrl }) => {
   const [name, setName] = useState('');
@@ -18,7 +19,7 @@ export const Contact = ({ apiUrl }) => {
     setSuccess(false);
 
     try {
-      const response = await fetch(`${apiUrl}/api/contacts`, {
+      const response = await safeFetch(`${apiUrl}/api/contacts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, message })

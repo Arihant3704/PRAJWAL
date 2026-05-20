@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Shield, Lock, Mail, User, ArrowRight, Activity } from 'lucide-react';
+import { safeFetch } from '../utils/api';
 
 export const Auth = ({ onLoginSuccess, apiUrl }) => {
   const [isRegister, setIsRegister] = useState(false);
@@ -18,7 +19,7 @@ export const Auth = ({ onLoginSuccess, apiUrl }) => {
     const payload = isRegister ? { name, email, password } : { email, password };
 
     try {
-      const response = await fetch(`${apiUrl}${endpoint}`, {
+      const response = await safeFetch(`${apiUrl}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -41,7 +42,7 @@ export const Auth = ({ onLoginSuccess, apiUrl }) => {
     setError('');
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/api/auth/demo`, {
+      const response = await safeFetch(`${apiUrl}/api/auth/demo`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });

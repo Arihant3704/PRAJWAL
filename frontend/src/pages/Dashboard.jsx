@@ -10,6 +10,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { Doughnut, Line } from 'react-chartjs-2';
+import { safeFetch } from '../utils/api';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -48,7 +49,7 @@ export const Dashboard = ({ token, apiUrl, onNavigateToScan }) => {
   const fetchDashboardData = async () => {
     try {
       setError('');
-      const response = await fetch(`${apiUrl}/api/scans`, {
+      const response = await safeFetch(`${apiUrl}/api/scans`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();

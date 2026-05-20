@@ -9,6 +9,8 @@ import { Performance } from './pages/Performance';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 
+import { safeFetch } from './utils/api';
+
 // Dynamic API detection (supports both local dev and production Render hosts)
 const API_URL = import.meta.env?.VITE_API_URL || 'http://localhost:3000';
 
@@ -27,7 +29,7 @@ export const App = () => {
         return;
       }
       try {
-        const response = await fetch(`${API_URL}/api/auth/me`, {
+        const response = await safeFetch(`${API_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await response.json();
