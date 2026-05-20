@@ -1,44 +1,62 @@
-# SpamShield - Spam Email Detection System
+# SpamShield — Decoupled Spam Detection System
 
-A professional web application for detecting spam keywords in email content using the optimized **Horspool String Matching Algorithm**.
+A professional web application for detecting spam keywords in email content using the optimized **Boyer-Moore-Horspool String Matching Algorithm**.
 
-## Tech Stack
-- **Backend:** Node.js (Express) - *Adapted from Flask requirements for platform compatibility*
-- **Frontend:** Vanilla HTML5, CSS3, JavaScript
-- **Template Engine:** EJS (Embedded JavaScript)
-- **Database:** SQLite (better-sqlite3)
-- **Security:** Bcrypt (Password Hashing), Express-Session (Auth)
+---
 
-## Key Features
-- **Horspool Algorithm:** Custom implementation with shift table logic for efficient pattern matching.
-- **Cybersecurity UI:** Modern dark theme with glassmorphism and smooth animations.
-- **User Dashboard:** Track scan history and spam statistics.
-- **Visualization:** Real-time animation of the string matching process.
-- **Performance:** Comparative charts showing complexity and speed.
+## 🛠️ Tech Stack & Architecture
 
-## Project Structure
-- `server.ts`: Main application logic and routing.
-- `lib/horspool.ts`: Mathematical implementation of the algorithm.
-- `lib/db.ts`: SQLite database schema and initialization.
-- `templates/`: EJS views for dynamic content.
-- `static/`: Frontend assets (CSS, JS).
+This repository is organized as a decoupled monorepo:
 
-## Credentials
-### Admin
-- **Email:** admin@spamshield.com
-- **Password:** admin123
+### 1. Frontend (`/frontend`)
+* **Core:** React, Vite, TypeScript
+* **Styling & Animations:** TailwindCSS, Framer Motion
+* **Visualization:** Chart.js, Canvas (Matrix falling code background)
+* **Hosting:** Designed for **Vercel**
 
-### Demo User
-- **Email:** user@spamshield.com
-- **Password:** user123
+### 2. Backend (`/backend`)
+* **Core:** Node.js (Express), TypeScript
+* **Database Client:** Mongoose
+* **Authentication:** JSON Web Tokens (JWT) & Bcrypt password hashing
+* **Hosting:** Designed for **Render** / **Render Web Service**
 
-## How to Run
-1. The application starts automatically in the AI Studio environment.
-2. If running locally:
+### 3. Database Layer
+* **Database:** **MongoDB Atlas** (Cloud Relational Relational/Document Database)
+
+---
+
+## ⚙️ Local Development Setup
+
+### Prerequisite Environment Variables
+
+#### Backend (`/backend/.env`)
+Create a `.env` file inside the `backend` folder:
+```env
+PORT=3000
+MONGODB_URI="your_mongodb_atlas_connection_string"
+JWT_SECRET="your_secure_jwt_secret"
+```
+
+#### Frontend (`/frontend/.env`)
+Create a `.env` file inside the `frontend` folder:
+```env
+VITE_API_URL="http://localhost:3000"
+```
+
+---
+
+### Step-by-Step Execution
+
+1. **Start the Backend API:**
    ```bash
-   npm install
+   cd backend
    npm run dev
    ```
+   The backend API will listen at `http://localhost:3000`.
 
-## Algorithm Implementation Details
-Horspool’s algorithm is a simplification of the Boyer-Moore algorithm. It preprocesses the pattern to create a shift table based on the last character of the current window in the text. This allows skipping multiple characters on mismatch, significantly improving average performance to sub-linear time O(n/m).
+2. **Start the Frontend Client:**
+   ```bash
+   cd ../frontend
+   npm run dev
+   ```
+   The Vite React dev server will spin up at `http://localhost:5173`.
